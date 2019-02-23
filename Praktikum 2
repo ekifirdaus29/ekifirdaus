@@ -1,0 +1,280 @@
+Enter password: ***
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 5.5.51 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database mahasiswa;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use mahasiswa;
+Database changed
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| latihan01          |
+| mahasiswa          |
+| mysql              |
+| nama_database      |
+| performance_schema |
+| sekolah            |
+| test               |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> create table biodata
+    -> (nim varchar (10) primary key,
+    -> nama varchar (10) not null,
+    -> alamat_jalan varchar (10) not null,
+    -> kota varchar (15) not null,
+    -> kode_pos varchar (15) not null,
+    -> no_hp varcahar (15) not null,
+    -> jenis_kelamin varchar (15) not null,
+    -> kode_dosen varchar (10) not null);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varcahar (15) not null,
+jenis_kelamin varchar (15) not null,
+kode_dosen varchar ' at line 7
+mysql> create table biodata
+    -> (nim varchar (10) primary key,
+    -> nama varchar (10) not null,
+    -> alamat_jalan varchar (10) not null,
+    -> kota varchar (15) not null,
+    -> kode_pos varchar (15) not null,
+    -> no_hp varchar (15) not null,
+    -> jenis_kelamin varchar (15) not null,
+    -> kode_dosen varchar (10) not null);
+Query OK, 0 rows affected (0.18 sec)
+
+mysql> desc biodata;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| nim           | varchar(10) | NO   | PRI | NULL    |       |
+| nama          | varchar(10) | NO   |     | NULL    |       |
+| alamat_jalan  | varchar(10) | NO   |     | NULL    |       |
+| kota          | varchar(15) | NO   |     | NULL    |       |
+| kode_pos      | varchar(15) | NO   |     | NULL    |       |
+| no_hp         | varchar(15) | NO   |     | NULL    |       |
+| jenis_kelamin | varchar(15) | NO   |     | NULL    |       |
+| kode_dosen    | varchar(10) | NO   |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> alter table biodata add tanggal_lahir date after jenis_kelamin;
+Query OK, 0 rows affected (0.50 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc biodata;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| nim           | varchar(10) | NO   | PRI | NULL    |       |
+| nama          | varchar(10) | NO   |     | NULL    |       |
+| alamat_jalan  | varchar(10) | NO   |     | NULL    |       |
+| kota          | varchar(15) | NO   |     | NULL    |       |
+| kode_pos      | varchar(15) | NO   |     | NULL    |       |
+| no_hp         | varchar(15) | NO   |     | NULL    |       |
+| jenis_kelamin | varchar(15) | NO   |     | NULL    |       |
+| tanggal_lahir | date        | YES  |     | NULL    |       |
+| kode_dosen    | varchar(10) | NO   |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+9 rows in set (0.00 sec)
+
+mysql> insert into biodata
+    -> (nim, nama, alamat_jalan, kota, kode_pos, no_hp, jenis_kelamin, tanggal_lahir, kode_dosen)
+    -> values
+    -> ("11223345", "Fadly", " ", "Bekasi", " ", " ", "Laki-Laki", "2000-12-25", " "),
+    -> ("11223346", "Iqbal", " ", "Bekasi", " ", " ", "Laki-Laki", "2000-10-27", " "),
+    -> ("11223347", "Ismi", " ", "Bekasi", " ", " ", "Perempuan", "1999-10-29", " ");
+Query OK, 3 rows affected (0.42 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from biodata;
++----------+-------+--------------+--------+----------+-------+---------------+---------------+------------+
+| nim      | nama  | alamat_jalan | kota   | kode_pos | no_hp | jenis_kelamin | tanggal_lahir | kode_dosen |
++----------+-------+--------------+--------+----------+-------+---------------+---------------+------------+
+| 11223345 | Fadly |              | Bekasi |          |       | Laki-Laki     | 2000-12-25    |            |
+| 11223346 | Iqbal |              | Bekasi |          |       | Laki-Laki     | 2000-10-27    |            |
+| 11223347 | Ismi  |              | Bekasi |          |       | Perempuan     | 1999-10-29    |            |
++----------+-------+--------------+--------+----------+-------+---------------+---------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into biodata
+    -> values
+    -> ("11223348", "Kartika", " ", "Bekasi", " ", " ", "Perempuan", "2000-02-27", " "),
+    -> ("11223349", "Karmila", " ", "Bekasi", " ", " ", "Perempuan", "1999-07-28", " "),
+    -> ("11223350", "Mail", " ", "Bekasi", " ", " ", "Laki-Laki", "1997-04-29", " "):
+    -> ";
+    "> ;
+    "> ";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':
+";
+;
+"' at line 5
+mysql> insert into biodata
+    -> values
+    -> ("11223348", "Kartika", " ", "Bekasi", " ", " ", "Perempuan", "2000-02-27", " "),
+    -> ("11223349", "Karmila", " ", "Bekasi", " ", " ", "Perempuan", "1999-07-28", " "),
+    -> ("11223350", "Mail", " ", "Bekasi", " ", " ", "Laki-Laki", "1997-04-29", " ");
+Query OK, 3 rows affected (0.17 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from biodata;
++----------+---------+--------------+--------+----------+-------+---------------+---------------+------------+
+| nim      | nama    | alamat_jalan | kota   | kode_pos | no_hp | jenis_kelamin | tanggal_lahir | kode_dosen |
++----------+---------+--------------+--------+----------+-------+---------------+---------------+------------+
+| 11223345 | Fadly   |              | Bekasi |          |       | Laki-Laki     | 2000-12-25    |            |
+| 11223346 | Iqbal   |              | Bekasi |          |       | Laki-Laki     | 2000-10-27    |            |
+| 11223347 | Ismi    |              | Bekasi |          |       | Perempuan     | 1999-10-29    |            |
+| 11223348 | Kartika |              | Bekasi |          |       | Perempuan     | 2000-02-27    |            |
+| 11223349 | Karmila |              | Bekasi |          |       | Perempuan     | 1999-07-28    |            |
+| 11223350 | Mail    |              | Bekasi |          |       | Laki-Laki     | 1997-04-29    |            |
++----------+---------+--------------+--------+----------+-------+---------------+---------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> update biodata set tanggal_lahir = "1979-07-27" where nim = "11223345";
+Query OK, 1 row affected (0.15 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from biodata;
++----------+---------+--------------+--------+----------+-------+---------------+---------------+------------+
+| nim      | nama    | alamat_jalan | kota   | kode_pos | no_hp | jenis_kelamin | tanggal_lahir | kode_dosen |
++----------+---------+--------------+--------+----------+-------+---------------+---------------+------------+
+| 11223345 | Fadly   |              | Bekasi |          |       | Laki-Laki     | 1979-07-27    |            |
+| 11223346 | Iqbal   |              | Bekasi |          |       | Laki-Laki     | 2000-10-27    |            |
+| 11223347 | Ismi    |              | Bekasi |          |       | Perempuan     | 1999-10-29    |            |
+| 11223348 | Kartika |              | Bekasi |          |       | Perempuan     | 2000-02-27    |            |
+| 11223349 | Karmila |              | Bekasi |          |       | Perempuan     | 1999-07-28    |            |
+| 11223350 | Mail    |              | Bekasi |          |       | Laki-Laki     | 1997-04-29    |            |
++----------+---------+--------------+--------+----------+-------+---------------+---------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from biodata where nim = "11223345";
++----------+-------+--------------+--------+----------+-------+---------------+---------------+------------+
+| nim      | nama  | alamat_jalan | kota   | kode_pos | no_hp | jenis_kelamin | tanggal_lahir | kode_dosen |
++----------+-------+--------------+--------+----------+-------+---------------+---------------+------------+
+| 11223345 | Fadly |              | Bekasi |          |       | Laki-Laki     | 1979-07-27    |            |
++----------+-------+--------------+--------+----------+-------+---------------+---------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from biodata;
++----------+---------+--------------+--------+----------+-------+---------------+---------------+------------+
+| nim      | nama    | alamat_jalan | kota   | kode_pos | no_hp | jenis_kelamin | tanggal_lahir | kode_dosen |
++----------+---------+--------------+--------+----------+-------+---------------+---------------+------------+
+| 11223345 | Fadly   |              | Bekasi |          |       | Laki-Laki     | 1979-07-27    |            |
+| 11223346 | Iqbal   |              | Bekasi |          |       | Laki-Laki     | 2000-10-27    |            |
+| 11223347 | Ismi    |              | Bekasi |          |       | Perempuan     | 1999-10-29    |            |
+| 11223348 | Kartika |              | Bekasi |          |       | Perempuan     | 2000-02-27    |            |
+| 11223349 | Karmila |              | Bekasi |          |       | Perempuan     | 1999-07-28    |            |
+| 11223350 | Mail    |              | Bekasi |          |       | Laki-Laki     | 1997-04-29    |            |
++----------+---------+--------------+--------+----------+-------+---------------+---------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> delete from biodata where nim = "11223347";
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from biodata;
++----------+---------+--------------+--------+----------+-------+---------------+---------------+------------+
+| nim      | nama    | alamat_jalan | kota   | kode_pos | no_hp | jenis_kelamin | tanggal_lahir | kode_dosen |
++----------+---------+--------------+--------+----------+-------+---------------+---------------+------------+
+| 11223345 | Fadly   |              | Bekasi |          |       | Laki-Laki     | 1979-07-27    |            |
+| 11223346 | Iqbal   |              | Bekasi |          |       | Laki-Laki     | 2000-10-27    |            |
+| 11223348 | Kartika |              | Bekasi |          |       | Perempuan     | 2000-02-27    |            |
+| 11223349 | Karmila |              | Bekasi |          |       | Perempuan     | 1999-07-28    |            |
+| 11223350 | Mail    |              | Bekasi |          |       | Laki-Laki     | 1997-04-29    |            |
++----------+---------+--------------+--------+----------+-------+---------------+---------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from biodata
+    -> where tanggal_lahir >= "1996-2-13";
++----------+---------+--------------+--------+----------+-------+---------------+---------------+------------+
+| nim      | nama    | alamat_jalan | kota   | kode_pos | no_hp | jenis_kelamin | tanggal_lahir | kode_dosen |
++----------+---------+--------------+--------+----------+-------+---------------+---------------+------------+
+| 11223346 | Iqbal   |              | Bekasi |          |       | Laki-Laki     | 2000-10-27    |            |
+| 11223348 | Kartika |              | Bekasi |          |       | Perempuan     | 2000-02-27    |            |
+| 11223349 | Karmila |              | Bekasi |          |       | Perempuan     | 1999-07-28    |            |
+| 11223350 | Mail    |              | Bekasi |          |       | Laki-Laki     | 1997-04-29    |            |
++----------+---------+--------------+--------+----------+-------+---------------+---------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select nama, kota, jenis_kelamin, from biodata;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from biodata' at line 1
+mysql> select nama, kota, jenis_kelamin, from biodata
+    -> where kota = "Bekasi"
+    -> and jenis_kelamin = "Perempuan";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from biodata
+where kota = "Bekasi"
+and jenis_kelamin = "Perempuan"' at line 1
+mysql> select nama, kota, jenis_kelamin, from biodata
+    -> where kota = "Bekasi"
+    -> and jenis_kelamin ="Perempuan";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from biodata
+where kota = "Bekasi"
+and jenis_kelamin ="Perempuan"' at line 1
+mysql> select nama, kota, jenis_kelamin, from biodata
+    -> where kota = "Bekasi"
+    -> and jenis_kelamin ="perempuan";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from biodata
+where kota = "Bekasi"
+and jenis_kelamin ="perempuan"' at line 1
+mysql> select nama, kota, jenis_kelamin from biodata
+    -> where kota = "Bekasi"
+    -> and jenis_kelamin ="Perempuan";
++---------+--------+---------------+
+| nama    | kota   | jenis_kelamin |
++---------+--------+---------------+
+| Kartika | Bekasi | Perempuan     |
+| Karmila | Bekasi | Perempuan     |
++---------+--------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from biodata
+    -> where kota = "Bekasi" and jenis_kelamin = "Laki-Laki"
+    -> or tanggal_lahir <= "1997" and jenis_kelamin = "Perempuan"
+    -> order by nama;
++----------+-------+--------------+--------+----------+-------+---------------+---------------+------------+
+| nim      | nama  | alamat_jalan | kota   | kode_pos | no_hp | jenis_kelamin | tanggal_lahir | kode_dosen |
++----------+-------+--------------+--------+----------+-------+---------------+---------------+------------+
+| 11223345 | Fadly |              | Bekasi |          |       | Laki-Laki     | 1979-07-27    |            |
+| 11223346 | Iqbal |              | Bekasi |          |       | Laki-Laki     | 2000-10-27    |            |
+| 11223350 | Mail  |              | Bekasi |          |       | Laki-Laki     | 1997-04-29    |            |
++----------+-------+--------------+--------+----------+-------+---------------+---------------+------------+
+3 rows in set, 1 warning (0.00 sec)
+
+mysql> select nama, alamat_jalan from biodata;
++---------+--------------+
+| nama    | alamat_jalan |
++---------+--------------+
+| Fadly   |              |
+| Iqbal   |              |
+| Kartika |              |
+| Karmila |              |
+| Mail    |              |
++---------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from biodata order by mana asc;
+ERROR 1054 (42S22): Unknown column 'mana' in 'order clause'
+mysql> select * from biodata
+    -> order by nama asc;
++----------+---------+--------------+--------+----------+-------+---------------+---------------+------------+
+| nim      | nama    | alamat_jalan | kota   | kode_pos | no_hp | jenis_kelamin | tanggal_lahir | kode_dosen |
++----------+---------+--------------+--------+----------+-------+---------------+---------------+------------+
+| 11223345 | Fadly   |              | Bekasi |          |       | Laki-Laki     | 1979-07-27    |            |
+| 11223346 | Iqbal   |              | Bekasi |          |       | Laki-Laki     | 2000-10-27    |            |
+| 11223349 | Karmila |              | Bekasi |          |       | Perempuan     | 1999-07-28    |            |
+| 11223348 | Kartika |              | Bekasi |          |       | Perempuan     | 2000-02-27    |            |
+| 11223350 | Mail    |              | Bekasi |          |       | Laki-Laki     | 1997-04-29    |            |
++----------+---------+--------------+--------+----------+-------+---------------+---------------+------------+
+5 rows in set (0.00 sec)
+
+mysql>
